@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style type="text/css">
+img{width:220px;height: 200px;}
+</style>
+<script type="text/javascript">
+window.onload=function () {
+	imgs=['./im1.jpg','./im2.jpg','./im3.jpg','./im4.jpg','./im5.png','./im6.png'];
+	k=1;
+	imagenes=document.getElementsByTagName('img');
+	
+	for (i=3;i<imagenes.length;i++) {
+		imagenes[i].onmouseover=f1	;
+		imagenes[i].onmouseout=f2	;		
+	}
+	
+	setTimeout(cambiar,2000);
+}
+function cambiar(a) {
+
+	for (i=0;i<3;i++) {
+		document.getElementById(i).src=imgs[i+3];
+	}
+	
+	setTimeout(cambiar2,2000);
+}
+function cambiar2(b) {
+
+	for (i=0;i<3;i++) {
+		document.getElementById(i).src=imgs[i];
+	}
+	
+	setTimeout(cambiar,2000);
+}
+function f1(kakita) {
+//console.log(kakita.target.id);
+	switch(kakita.target.id) {
+	case "3":
+		kakita.target.src="./im1.jpg";
+		break;
+	case "4":
+		kakita.target.src="./im2.jpg";
+		break;
+	case "5":
+		kakita.target.src="./im3.jpg";
+		break;
+	default:
+		console.log('prg jodido');
+		
+	}
+}
+function f2(kakita) {
+//console.log(kakita.target.id);
+	switch(kakita.target.id) {
+	case "3":
+		kakita.target.src="./im4.jpg";
+		break;
+	case "4":
+		kakita.target.src="./im5.png";
+		break;
+	case "5":
+		kakita.target.src="./im6.png";
+		break;
+	default:
+		console.log('prg jodido');
+		
+	}
+}
+</script>
+</head>
+<body>
+<table>
+    <tr>
+        <td><img id="0" src="./im1.jpg"></td>
+        <td><img id="1" src="./im2.jpg"></td>
+        <td><img id="2" src="./im3.jpg"></td>
+    </tr>
+    <tr>
+        <td><img id="3" src="./im4.jpg"></td>
+        <td><img id="4" src="./im5.png"></td>
+        <td><img id="5" src="./im6.png"></td>
+    </tr>
+    
+</table>
+</body>
+</html>

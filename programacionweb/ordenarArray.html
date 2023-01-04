@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>arrays b03</title>
+
+
+</head>
+<body>
+
+	<p id="parrafo"></p>
+
+		<script type="text/javascript">
+		
+	
+			var bandera = false;
+
+			
+			var array = new Array();
+			var i = 0
+
+			do{
+
+				nombre = prompt("");
+
+				if(nombre)
+				{	
+					if(isNaN(nombre))
+					{
+						array[i] = nombre;
+						i++;
+					}	
+					else
+					{
+						alert("Introduce solo nombres");
+					}	
+				}
+				else
+				{
+
+					if(i >0)
+					{
+						bandera = true;
+					}
+					else
+					{
+						alert("Introduce almenos un nombre");
+					}	
+				}	
+
+			}while(!bandera)
+
+			document.getElementById("parrafo").innerHTML = array.sort();
+
+		
+		
+	</script>
+
+</body>
+</html>

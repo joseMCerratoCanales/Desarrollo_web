@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>check</title>
+</head>
+<body>
+
+	<input type="radio" value="si" name="pregunta" id="pregunta_si"/> <span>num1</span>
+	<input type="radio" value="no" name="pregunta" id="pregunta_no"/> <span>num2</span>
+	<input type="radio" value="nsnc" name="pregunta" id="pregunta_nsnc" checked="checked"/><span>num3</span>
+
+	<script type="text/javascript">
+
+		var elementos =document.getElementsByName("pregunta")
+
+		var textos = document.getElementsByTagName("span");	
+
+
+		for(var i=0; i<elementos.length; i++) {
+
+			elementos[i].onchange = seleccion;
+
+		}	
+
+
+
+		function seleccion() {
+
+			console.log("hola");
+
+			for(var i=0; i<elementos.length; i++) {
+		
+
+				text = elementos[i].textContent;
+
+				if(elementos[i].checked)
+				{
+					//alert("texto: " + textos[i].textContent + ", el valor es: " + elementos[i].value);
+					console.log("el valor es: "+ elementos[i].value);
+				}
+				else{
+
+					//alert("id "+elementos[i].id);
+				}
+
+
+			}
+
+		}
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>arkanoid JOSE_MANUEl_CERRATO</title>
+	<style type="text/css">
+
+		
+
+		#b{
+			background: black;
+		}
+
+		#contenedor{
+	
+			border: solid black 2px; 
+			margin-left: 200px;
+			margin-top: 50px;
+			position: absolute;
+		}
+
+		#botones{
+
+			
+			float: right;
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			border-radius: 20px;
+			background-image: url('ball.gif');
+			background-size: 100% 100%;
+			margin-left:340px;
+			margin-top: 200px; 
+		}
+
+		#puntos{
+			margin-top: 20px;
+			margin-left: 30px;
+			float :; left;
+			width :30px;
+			height:30px;
+			background :orange;
+			border:solid black 1px;
+			color: black;
+			text-align: center;
+		}
+
+		#parrafo{
+
+			color: red;
+			size: 120px;
+			position: absolute;
+		}
+
+		#inicio{
+			background: linear-gradient(red 60%, yellow);
+		}
+
+		#salir{
+			background: linear-gradient(red 60%, yellow);
+		}
+
+		#pause{
+
+			color: red;
+			position: absolute;
+			left: 40%;
+		}
+	</style>
+
+</head>
+<body id="b">
+
+<p id="parrafo"></p>
+<p id="pause"></p>
+<div id="contenedor">
+	<div id="pelota"></div>
+	<div id="plataforma"></div>
+
+	<div id="botones">
+	<BUTTON id="inicio"> Inicio </BUTTON>
+	<BUTTON id="salir"> Salir </BUTTON>
+	<div id="puntos"></div>
+</div>
+
+<script type="text/javascript">
+	/////llamamos a cada uno de los elementos del Dom///////////
+	var contenedor = document.getElementById("contenedor");
+	var pelota = document.getElementById("pelota");
+	var plataforma = document.getElementById("plataforma");
+	var botones = document.getElementById("botones");
+	var puntos = document.getElementById("puntos");
+	var parrafo = document.getElementById("parrafo");
+	var pause = document.getElementById("pause");
+	var id ;
+
+
+
+	var jsonLadrillos = {
+		
+			"ladrillo":[
+			{
+				"id":0,
+				"top":"10px",
+				"left":"10px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":1,
+				"top":"10px",
+				"left":"70px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":2,
+				"top":"10px",
+				"left":"130px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":3,
+				"top":"10px",
+				"left":"190px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":4,
+				"top":"10px",
+				"left":"250px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":5,
+				"top":"10px",
+				"left":"310px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":6,
+				"top":"10px",
+				"left":"370px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":7,
+				"top":"10px",
+				"left":"430px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":8,
+				"top":"10px",
+				"left":"490px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":9,
+				"top":"10px",
+				"left":"550px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":10,
+				"top":"10px",
+				"left":"610px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":11,
+				"top":"10px",
+				"left":"670px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":12,
+				"top":"10px",
+				"left":"730px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":13,
+				"top":"35px",
+				"left":"10px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":14,
+				"top":"35px",
+				"left":"70px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":15,
+				"top":"35px",
+				"left":"130px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":16,
+				"top":"35px",
+				"left":"190px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":17,
+				"top":"35px",
+				"left":"250px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":18,
+				"top":"35px",
+				"left":"310px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":19,
+				"top":"35px",
+				"left":"370px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":20,
+				"top":"35px",
+				"left":"430px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":21,
+				"top":"35px",
+				"left":"490px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":22,
+				"top":"35px",
+				"left":"550px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":23,
+				"top":"35px",
+				"left":"610px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":24,
+				"top":"35px",
+				"left":"670px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			},
+			{
+				"id":25,
+				"top":"35px",
+				"left":"730px",
+				"width":"50px",
+				"height":"15px",
+				"background":"linear-gradient(red 60%, orange)",
+				"border":"solid black 2px",
+				"position":"absolute"
+			}]
+
+	}
+
+
+
+	var inicio = document.getElementById("inicio").addEventListener("click", function(ev){
+
+			id = setInterval(mover, 10);
+			botones.style.visibility = "hidden";
+
+			//plataformaX=340;
+
+
+			///////variables ////////////////
+
+			velocidadX = 1;
+			velocidadY = 1;
+			posX  = 380;
+			posY = 380;
+
+			var cont = 0;
+
+			///////Damos los estilos de la pelota///////////////////////
+
+			pelota.style.width="30px";
+			pelota.style.height = "30px";
+			pelota.style.borderRadius= "20px";
+			pelota.style.backgroundImage = "url('ball.gif')";
+			pelota.style.backgroundSize = "110%, 110%"
+			pelota.style.top = "410px";
+			pelota.style.left = "410px";
+			pelota.style.position = "absolute";
+
+			//////estilos de la plataforma///////////////
+
+			plataforma.style.width="120px";
+			plataforma.style.height = "10px";
+			plataforma.style.borderRadius= "10px";
+			plataforma.style.background= "linear-gradient(red 60%, yellow)"; 
+			plataforma.style.border = "solid black 2px";
+			plataforma.style.top = 480+"px";
+			plataforma.style.left = 380+"px";
+			plataforma.style.position = "absolute";
+
+		    plataformaX = 410;
+			plataformaY = 410;
+
+			c =0;
+			json;
+
+	
+
+
+
+
+	});
+
+	var salir = document.getElementById("salir").addEventListener("click", function() {
+		
+		window.close();
+
+	});
+ 
+     ///////// creamos el array de los ladrillos y demas/////////////
+
+
+     var arrayLadrillos = new Array();
+
+
+
+	///////////stylos del contenedor //////////////
+
+	
+	contenedor.style.width= "800px";
+	contenedor.style.height= "500px";
+	contenedor.style.background = "url('fondo.jpg')";
+	contenedor.style.backgroundSize="100% 100%"
+
+
+
+	
+	
+
+
+
+
+	var plataformaX = 410;
+	var plataformaY = 410;
+	var teclaIzquierda = 20;
+	var teclaDerecha = -20;	
+
+
+/////////////////funcion de crear ladrillos json///////////////////
+	ladrillos();
+
+
+
+
+
+	////////////////////puntos ////////////////
+	var contador = 0;
+
+
+
+
+	////////////////mover la pelota y los limites de esta//////////////
+	function mover(){
+
+
+		pelota.style.top = posX+"px";
+		pelota.style.left = posY + "px";
+
+
+		posX += velocidadX;
+		posY += velocidadY;
+
+		//console.log(contenedor)	
+
+
+
+		//////////////cuando la pelota no choca con la plataforma///////////////////////////////
+		if(parseInt(pelota.style.top) +  parseInt(pelota.style.height) == parseInt(plataforma.style.top) && parseInt(pelota.style.left) + parseInt(pelota.style.width) <= parseInt(plataforma.style.left)  )
+		{
+			//////////////////reiniciamos todo///////////////////
+			velocidadX = 1;
+			botones.style.visibility = "visible";
+			clearInterval(id);
+
+			puntos.innerHTML= contador;
+
+			
+			//plataformaX=340;
+
+
+		}	
+		/////////////cuando la pelota choca con la plataforma
+		else if (parseInt(pelota.style.top) +  parseInt(pelota.style.height) == parseInt(plataforma.style.top) && parseInt(pelota.style.left) <= parseInt(plataforma.style.left) +  parseInt(plataforma.style.width))
+		{
+			////////choque lado derecho de la plataforma
+			if(parseInt(pelota.style.left) <= parseInt(plataforma.style.left)+20)
+			{
+				velocidadX = -1;
+				velocidadY = -2;
+			}//lado izquierdo
+			else if(parseInt(pelota.style.left) >= parseInt(plataforma.style.left)+100)
+			{
+				velocidadX = -1;
+				velocidadY = 2;
+			}
+		
+			velocidadX = -1;
+			//boleano de ladrillos
+			
+		}
+
+		//si no choca en el lado derecho de la plataforma
+		if(parseInt(pelota.style.top) +  parseInt(pelota.style.height) >= parseInt(plataforma.style.top) && parseInt(pelota.style.left) - 282 >= parseInt(plataforma.style.left))
+		{
+			velocidadX = 1;
+			botones.style.visibility = "visible";
+			clearInterval(id);
+		}	
+
+		///////////////////////limites del contenedor////////////////////
+		
+		if(parseInt(pelota.style.top) <= 0)
+		{
+			velocidadX = 1;
+		}	
+		if(parseInt(pelota.style.left)+ parseInt(pelota.style.width) >= parseInt(contenedor.style.width))
+		{
+			
+			velocidadY = -1;
+
+		}	
+		if(parseInt(pelota.style.left) <= 0)
+		{
+			velocidadY = 1;
+		}	
+
+
+			///derribas 2 ladrillos pelota aumenta tamaño
+		if(contador == 2)
+		{
+			pelota.style.width="80px";
+			pelota.style.height="80px";
+		}
+		else if(contador == 4)//pelota ala normalidad
+		{
+			pelota.style.width="30px";
+			pelota.style.height="30px";
+		}	
+			//derribas 6 ladrillos plataforma width aumenta
+		if (contador == 6) {
+
+			plataforma.style.width="160px";
+			
+
+		}
+			////si no quedan ladrillos fin de juego
+		if(contador == 26)
+		{
+			clearInterval(id);
+		}	
+
+		//////////Coliciones con ladrillos///////////////////////////////////////
+
+		choqueLadrillos();
+
+			
+
+			//console.log("dentro choque");
+
+		
+		
+		
+
+	}
+	//////////pulsar teclass/////////////////
+
+		//////////pulsar teclass/////////////////
+
+	document.addEventListener("keydown", function(ev){
+
+		//console.log("");
+
+		console.log(ev.keyCode);
+		//var c =0;
+
+		if(ev.keyCode == 13)
+		{
+			if(c==0)
+			{
+				clearInterval(id);
+				c++;
+				pause.innerHTML = "PAUSADO";
+
+			}	
+			else{
+				c=0;
+				id = setInterval(mover,10);
+				pause.innerHTML = "";
+			}
+			
+
+		}	
+		
+ 
+		if(ev.keyCode == 90 && parseInt(plataforma.style.left) >= 0 - teclaDerecha)
+		{
+			plataformaX += teclaDerecha;
+
+		}
+		else if(ev.keyCode == 88 && parseInt(plataforma.style.left)+parseInt(plataforma.style.width)  <= parseInt(contenedor.style.width)- teclaIzquierda )
+		{
+			plataformaX += teclaIzquierda;
+		}	
+
+		plataforma.style.left = plataformaX + "Px";
+
+	});
+
+
+
+    ///////////////mover con el mause///////////////
+
+  contenedor.addEventListener("mousemove",function(ev){
+
+       ////ev.clientX 
+
+
+		
+		ev.clientX = parseInt(plataforma.style.left);
+		var mouseX =  ev.clientX;
+
+	
+
+		if(mouseX > 200 && mouseX < 890)
+		{
+			
+	
+			plataforma.style.left = mouseX- 210 +"px";
+		}
+		
+
+		///damos la pocicion de los bordes del contenedor a la plataforma
+
+			if(mouseX <280)
+			{
+				plataforma.style.left = 0+"px";
+			}	
+
+			if(mouseX >= 890)
+			{
+				plataforma.style.left = 890- 214+"px";
+			}
+	
+
+
+	
+    });
+
+
+	//////creacion de ladrillos/////////////
+
+	function json()
+	{
+		for(var i = 0; i < jsonLadrillos.length; i++)
+		{
+			console.log(jsonLadrillos[i].ladrillo);
+		}	
+	}
+
+	/////////////////////ladrillos json////////////////////////////////////
+	function ladrillos()
+	{
+		//console.log("funcion ladrillos")
+		for(var i = 0; i < jsonLadrillos.ladrillo.length;i++)
+		{
+
+			arrayLadrillos[i] = document.createElement("div");
+			arrayLadrillos[i].id = jsonLadrillos.ladrillo[i].id;
+			arrayLadrillos[i].style.width = jsonLadrillos.ladrillo[i].width;
+			arrayLadrillos[i].style.height = jsonLadrillos.ladrillo[i].height;
+			arrayLadrillos[i].style.background = jsonLadrillos.ladrillo[i].background;
+			arrayLadrillos[i].style.top = jsonLadrillos.ladrillo[i].top;
+			arrayLadrillos[i].style.left = jsonLadrillos.ladrillo[i].left;
+			arrayLadrillos[i].style.position=jsonLadrillos.ladrillo[i].position;
+			arrayLadrillos[i].style.border= jsonLadrillos.ladrillo[i].border;
+			contenedor.appendChild(arrayLadrillos[i]);
+
+			//console.log(arrayLadrillos[i]);
+		}
+	}
+
+	function choqueLadrillos()
+	{
+		parrafo.innerHTML = contador;
+		var eliminado = false;
+		for(var i = 0; i< jsonLadrillos.ladrillo.length && eliminado == false;i++)
+		{
+
+			//console.log("for choque")
+			if(parseInt(pelota.style.top) <= parseInt(arrayLadrillos[i].style.top) + parseInt(arrayLadrillos[i].style.height) )
+			{
+				
+
+				if(parseInt(pelota.style.left)+parseInt(pelota.style.width) >= parseInt(arrayLadrillos[i].style.left))
+				{
+					if (parseInt(pelota.style.left)+parseInt(pelota.style.width) <= parseInt(arrayLadrillos[i].style.left) + parseInt(arrayLadrillos[i].style.width)) 
+					{
+						nodo = document.getElementById(i);
+						contenedor.removeChild(nodo);
+						//console.log("if de choque");
+						velocidadX = 1;
+						velocidadY = -1;
+						eliminado = true;
+						contador++;
+						
+
+						//parrafo.innerHTML = contador;
+
+					}
+				}	
+
+				
+			}
+
+		}	
+	}
+
+
+
+
+
+</script>
+</body>
+</html>

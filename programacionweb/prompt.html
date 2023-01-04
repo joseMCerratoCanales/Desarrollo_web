@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>practicab01</title>
+
+	<script type="text/javascript">
+		
+
+
+		var num = 0;
+		var contador=0;
+		var boleano = false;
+		var suma = 0;
+		var amenosUnNumero = false;
+
+		do{
+
+			var cadena = prompt("");
+
+
+
+		///////controlamos los botones del prompt
+
+
+				if(cadena)
+				{	
+
+					//miramos si es un numero o no
+
+
+
+					if(isNaN(cadena))
+					{
+						//no es un numero
+						alert("el dato no es un numero ");
+						boleano=false;
+
+					}
+					else
+					{
+						//si es un numero
+
+						num = parseInt(cadena);
+						suma += num;
+						////miramos que exista almenos un numero
+						contador++;
+						almenosUnNumero = true;
+
+					}	
+
+
+				}
+				else 
+				{
+
+	 				if(almenosUnNumero)
+					{
+						
+						boleano = true;
+
+					}
+					else
+					{
+						
+						
+						alert("introduce almenos un numero");
+						boleano=false;
+
+					}	
+				}	
+
+			////miramos si es un numero
+		}while(!boleano);
+
+
+		var media = suma/contador;
+
+		alert("la media de los numero introducidos es :"+ media);
+
+
+	</script>
+
+
+</head>
+<body>
+
+
+</body>
+</html>
